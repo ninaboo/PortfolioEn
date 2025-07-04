@@ -68,7 +68,12 @@ a:hover{text-decoration:underline;}
   text-align:right;
   font-weight:700;
 }
-.section-num{font-size:1.5rem;}
+.section-num{
+  font-size:1.5rem;
+  color: var(--accent);
+
+
+}
 .skills{line-height:1.2;opacity:.7;}
 .proj-title{
   font-weight:700;
