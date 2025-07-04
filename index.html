@@ -327,40 +327,68 @@
   window.addEventListener("load", () => {
     const avatar = document.querySelector(".avatar-container");
     const video = avatar.querySelector("video");
+    const preloader = document.getElementById("preloader");
+    const content = document.getElementById("site-content");
 
     const videos = [
-      "assets/img/avatar1.webm" ,
+      "assets/img/avatar1.webm",
       "assets/img/avatar2.webm",
       "assets/img/avatar3.webm",
       "assets/img/avatar4.webm"
-      // Add more video paths here
     ];
 
     let index = 0;
 
     function cycleAvatar() {
-      // Load current video
       video.src = videos[index];
       video.load();
       video.play();
 
-      // Pop out
       avatar.classList.add("pop-out");
 
-      // After 3s, hide avatar
       setTimeout(() => {
         avatar.classList.remove("pop-out");
-
-        // After another 3s, switch to next video and repeat
         setTimeout(() => {
-          index = (index + 1) % videos.length; // Loop back to start
+          index = (index + 1) % videos.length;
           cycleAvatar();
         }, 8000);
       }, 8000);
     }
 
-    // Start the first pop-out after delay
-    setTimeout(cycleAvatar, 5000);
+    // Function to preload videos
+    function preloadVideos(paths) {
+      return Promise.all(paths.map(path => {
+        return new Promise((resolve) => {
+          const v = document.createElement("video");
+          v.src = path;
+          v.preload = "auto";
+          v.onloadeddata = resolve;
+          v.onerror = resolve; // still continue even if a video fails to load
+        });
+      }));
+    }
+
+    // Fade out preloader
+    function fadeOutPreloader() {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          preloader.style.opacity = "0";
+          content.style.opacity = "1";
+          setTimeout(() => {
+            preloader.remove();
+            resolve();
+          }, 1000); // match CSS fade
+        }, 2500); // loading duration
+      });
+    }
+
+    // Wait for both preloader and videos, then start animation
+    Promise.all([
+      fadeOutPreloader(),
+      preloadVideos(videos)
+    ]).then(() => {
+      setTimeout(cycleAvatar, 2000); // delay before first avatar
+    });
   });
 </script>
 
