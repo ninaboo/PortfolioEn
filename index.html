@@ -19,6 +19,15 @@
 
 <body>
 
+  <!--ninacode-->>
+<div id="preloader">
+  <div class="loader-text">Loading<span class="dots"></span></div>
+</div>
+
+ <!--ninacode end-->>
+
+
+<div id="site-content" style="opacity: 0;">
   <!-- =========================================================
        HERO  ·  Large banner with angled bottom edge
        Replace background image in CSS → #hero
@@ -56,16 +65,78 @@
     <!-- 1-B  ·  Image carousel  (Add / remove <div class="swiper-slide"> as needed) -->
     <div class="gallery swiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="assets/img/avatar-05.png" alt="Alt text 1"></div>
-        <div class="swiper-slide"><img src="assets/img/avatar-02.png" alt="Alt text 2"></div>
-        <div class="swiper-slide"><img src="assets/img/avatar-03.png" alt="Alt text 3"></div>
-        <div class="swiper-slide"><img src="assets/img/avatar-04.png" alt="Alt text 4"></div>
-        <div class="swiper-slide"><img src="assets/img/avatar-01.png" alt="Alt text 5"></div>
-        <div class="swiper-slide"><img src="assets/img/avatar-06.png" alt="Alt text 6"></div>
-        <div class="swiper-slide"><img src="assets/img/avatar-07.png" alt="Alt text 6"></div>
-        <div class="swiper-slide"><img src="assets/img/avatar-08.png" alt="Alt text 6"></div>
-        <div class="swiper-slide"><img src="assets/img/avatar-09.png" alt="Alt text 6"></div>
-        <div class="swiper-slide"><img src="assets/img/avatar-10.png" alt="Alt text 6"></div>
+      
+        <div class="swiper-slide">
+          <div class="hover-overlay">
+            <div class="swiper-slide"><img src="assets/img/avatar-05.png" alt="Alt text 1"></div>
+            <div class="overlay-text">Rating: Medium<br>My first medium avatar :3</br></div>
+          </div>
+        </div>
+       
+        <div class="swiper-slide">
+          <div class="hover-overlay">
+            <div class="swiper-slide"><img src="assets/img/avatar-01.png" alt="Alt text 1"></div>
+            <div class="overlay-text">Rating: Medium<br>Haya Chikaze chibi model. All custom textures.</br></div>
+          </div>
+        </div>
+       
+        <div class="swiper-slide">
+          <div class="hover-overlay">
+            <div class="swiper-slide"><img src="assets/img/avatar-03.png" alt="Alt text 1"></div>
+            <div class="overlay-text">Rating: Very Poor<br>This is my main model!</br></div>
+          </div>
+        </div>
+       
+        <div class="swiper-slide">
+          <div class="hover-overlay">
+            <div class="swiper-slide"><img src="assets/img/avatar-04.png" alt="Alt text 1"></div>
+            <div class="overlay-text">Rating: Medium<br>Commissioned by Haya Chikaze for VR Japan Tours (virtual Japanese tour event)</div>
+          </div>
+        </div>
+       
+        <div class="swiper-slide">
+          <div class="hover-overlay">
+            <div class="swiper-slide"><img src="assets/img/avatar-02.png" alt="Alt text 1"></div>
+            <div class="overlay-text">Rating: Medium<br>Rave avatar! For this one I used a new technique to bake out emission maps onto the skin causing some cool lighting effects!</div>
+          </div>
+        </div>
+       
+        <div class="swiper-slide">
+          <div class="hover-overlay">
+            <div class="swiper-slide"><img src="assets/img/avatar-06.png" alt="Alt text 1"></div>
+            <div class="overlay-text">Rating: Good<br>Hyper optimised avatar</div>
+          </div>
+        </div>
+       
+        <div class="swiper-slide">
+          <div class="hover-overlay">
+            <div class="swiper-slide"><img src="assets/img/avatar-07.png" alt="Alt text 1"></div>
+            <div class="overlay-text">Rating: Medium<br>Rave avatar!</div>
+          </div>
+        </div>
+       
+        <div class="swiper-slide">
+          <div class="hover-overlay">
+            <div class="swiper-slide"><img src="assets/img/avatar-08.png" alt="Alt text 1"></div>
+            <div class="overlay-text">Rating: Medium<br>Feature packed avatar with lots of little gimmicks</div>
+          </div>
+        </div>
+       
+        <div class="swiper-slide">
+          <div class="hover-overlay">
+            <div class="swiper-slide"><img src="assets/img/avatar-09.png" alt="Alt text 1"></div>
+            <div class="overlay-text">Rating: Medium<br>Rave avatar! Commissioned by Haya Chikaze</div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="hover-overlay">
+            <div class="swiper-slide"><img src="assets/img/avatar-10.png" alt="Alt text 1"></div>
+            <div class="overlay-text">Rating: Poor<br>Commissioned by Ryan9387! Feature packed avatar for world exploring!</div>
+          </div>
+        </div>
+       
+       
       </div>
 
       <!-- arrows & bullets (generated automatically) -->
@@ -192,7 +263,7 @@
       <a href="#">VRC Profile</a>
     </p>
   </footer>
-
+</div>
   <!-- =========================================================
        SCRIPTS
        ========================================================= -->
@@ -231,7 +302,7 @@
         centeredSlides: true,
         slidesPerView: PER_VIEW,
         spaceBetween: 16,
-        initialSlide: Math.floor(total / 2),
+        initialSlide: 1,
         navigation: {
           nextEl: gallery.querySelector('.swiper-button-next'),
           prevEl: gallery.querySelector('.swiper-button-prev'),
@@ -287,11 +358,29 @@
     }
 
     // Start the first pop-out after delay
-    setTimeout(cycleAvatar, 1000);
+    setTimeout(cycleAvatar, 5000);
   });
 </script>
-<!--NINACODE END-->
 
+
+<script>
+  window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    const content = document.getElementById('site-content');
+
+    // Show loading for 2.5s then fade out
+    setTimeout(() => {
+      preloader.style.opacity = '0';
+      content.style.opacity = '1';
+
+      setTimeout(() => {
+        preloader.remove();
+      }, 1000); // match CSS fade duration
+    }, 2500); // loading duration
+  });
+</script>
+
+<!--NINACODE END-->
 
 </body>
 </html>

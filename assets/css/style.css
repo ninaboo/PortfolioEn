@@ -104,8 +104,9 @@ a:hover{text-decoration:underline;}
 /* arrows & bullets */
 .gallery .swiper-button-next,
 .gallery .swiper-button-prev{
-  color:var(--accent);
-  --swiper-navigation-size:28px;
+  color: #eee;
+  border: #222222;
+  --swiper-navigation-size:100px;
 }
 .gallery .swiper-pagination-bullet{
   background:#bbb;
@@ -215,4 +216,94 @@ footer p{margin:.25rem 0;}
   object-fit: cover;
   border-radius: 0.75rem;
   background: #eee;
+}
+
+.gallery img,
+.gallery video {
+  transition: transform 0.3s ease;
+}
+
+/*HOVER*/
+.gallery img:hover,
+.gallery video:hover {
+  transform: scale(1.02); /* zoom in by 2% */
+}
+
+
+
+/* === Project 1: Hover Overlay Effect === */
+.project:first-of-type .hover-overlay {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.project:first-of-type .hover-overlay img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.project:first-of-type .hover-overlay:hover img {
+  transform: scale(1.02);
+  filter: brightness(0.6);
+}
+
+.project:first-of-type .overlay-text {
+  position: absolute;
+  bottom: 30px;     /* or bottom: 1rem; — moves it 10px up from bottom */
+  left: 0;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.project:first-of-type .hover-overlay:hover .overlay-text {
+  opacity: 1;
+}
+
+
+
+/* === PRELOADER === */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg); /* match your site background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 1s ease;
+}
+
+/* === TEXT === */
+.loader-text {
+  font-size: 1.75rem;
+  font-family: var(--font-main);
+  color: var(--accent);
+}
+
+/* === Dots animation === */
+.dots::after {
+  content: '';
+  animation: dot-flash 1.2s infinite steps(4);
+}
+
+@keyframes dot-flash {
+  0% { content: ''; }
+  25% { content: '.'; }
+  50% { content: '..'; }
+  75% { content: '...'; }
+}
+
+/* === Site content fade-in === */
+#site-content {
+  transition: opacity 1s ease;
 }
