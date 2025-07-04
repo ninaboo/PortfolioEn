@@ -309,7 +309,7 @@ footer p{margin:.25rem 0;}
 }
 
 
-/* === Hardware accel off warning === */
+/* === Hardware accel off === */
 .warning {
   background: #1a1a1a;
   color: #ffc107;
