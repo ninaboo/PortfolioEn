@@ -307,3 +307,14 @@ footer p{margin:.25rem 0;}
 #site-content {
   transition: opacity 1s ease;
 }
+
+
+/* === Hardware accel off warning === */
+.warning {
+  background: #1a1a1a;
+  color: #ffc107;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-weight: bold;
+  z-index: 9999;
+}

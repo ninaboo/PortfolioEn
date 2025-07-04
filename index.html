@@ -76,7 +76,7 @@
         <div class="swiper-slide">
           <div class="hover-overlay">
             <div class="swiper-slide"><img src="assets/img/avatar-01.png" alt="Alt text 1"></div>
-            <div class="overlay-text">Rating: Medium<br>Haya Chikaze chibi model. All custom textures.</br></div>
+            <div class="overlay-text">Rating: Medium<br>Rave avatar! For this one I used a new technique to bake out emission maps onto the skin causing some cool lighting effects!</br></div>
           </div>
         </div>
        
@@ -97,7 +97,7 @@
         <div class="swiper-slide">
           <div class="hover-overlay">
             <div class="swiper-slide"><img src="assets/img/avatar-02.png" alt="Alt text 1"></div>
-            <div class="overlay-text">Rating: Medium<br>Rave avatar! For this one I used a new technique to bake out emission maps onto the skin causing some cool lighting effects!</div>
+            <div class="overlay-text">Rating: Medium<br>Haya Chikaze chibi model. All custom textures.</br></div>
           </div>
         </div>
        
@@ -258,12 +258,16 @@
 
     <!-- ✏️ Social links (add / remove) -->
     <p class="social">
-      <a href="https://www.youtube.com/channel/UCpsbas2WQTBH5GZZUyOLZrQ">Youtube</a> ·
+      <a href="https://www.youtube.com/channel/UCpsbas2WQTBH5GZZUyOLZrQ" target="_blank">Youtube</a> ·
       <a href="#">Discord: ninaboo</a> ·
-      <a href="https://vrchat.com/home/user/usr_858111ea-43a7-4fec-9693-6e513b472130">VRC Profile</a>
+      <a href="https://vrchat.com/home/user/usr_858111ea-43a7-4fec-9693-6e513b472130" target="_blank">VRC Profile</a>
     </p>
   </footer>
 </div>
+
+
+
+
   <!-- =========================================================
        SCRIPTS
        ========================================================= -->
@@ -355,6 +359,8 @@
       }, 8000);
     }
 
+    
+
     // Function to preload videos
     function preloadVideos(paths) {
       return Promise.all(paths.map(path => {
@@ -387,29 +393,30 @@
       fadeOutPreloader(),
       preloadVideos(videos)
     ]).then(() => {
-      setTimeout(cycleAvatar, 2000); // delay before first avatar
+      setTimeout(cycleAvatar, 1000); // delay before first avatar
     });
   });
 </script>
 
 
+<!--Warning for no hardware accel-->
+<noscript>
+  <p class="warning">⚠️ JavaScript is disabled. Enable it for the full experience!</p>
+</noscript>
+
 <script>
-  window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    const content = document.getElementById('site-content');
+  window.addEventListener("load", () => {
+    const canvas = document.createElement("canvas");
+    const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
 
-    // Show loading for 2.5s then fade out
-    setTimeout(() => {
-      preloader.style.opacity = '0';
-      content.style.opacity = '1';
-
-      setTimeout(() => {
-        preloader.remove();
-      }, 1000); // match CSS fade duration
-    }, 2500); // loading duration
+    if (!gl) {
+      const warning = document.createElement("p");
+      warning.className = "warning";
+      warning.textContent = "⚠️ Hardware acceleration appears to be disabled. Please turn it on in your browser for smooth animations and videos.";
+      document.body.prepend(warning);
+    }
   });
 </script>
-
 <!--NINACODE END-->
 
 </body>
